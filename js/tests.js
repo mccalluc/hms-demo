@@ -31,3 +31,12 @@ QUnit.test('table_html', function (assert) {
             + '<td>10</td><td>38654432</td><td>38654432</td></tr>'
             + '</tbody></table>');
 });
+
+QUnit.test('controls_html', function (assert) {
+    assert.equal(DEMO.controls_html('x',['a','b'],'y',['1','2'])[0].outerHTML,
+            '<table><tbody>'
+            + '<tr><td></td><td class=\"x_a\">a</td><td class=\"x_b\">b</td></tr>'
+            + '<tr><td class=\"y_1\">1</td><td class=\"x_a y_1\"></td><td class=\"x_b y_1\"></td></tr>'
+            + '<tr><td class=\"y_2\">2</td><td class=\"x_a y_2\"></td><td class=\"x_b y_2\"></td></tr>'
+            + '</tbody></table>');
+});

@@ -31,14 +31,23 @@ var DEMO = {
         var $table = $('<table>');
         var $header = $('<tr>').append('<td>');
         for (var i = 0; i < x_values.length; i++) {
-            $('<td>').text(x_values[i]).appendTo($header);
+            var value = x_values[i];
+            $('<td>').text(value)
+                    .addClass(DEMO.class_name(x_prefix,value))
+                    .appendTo($header);
         }
         $header.appendTo($table);
         for (var i = 0; i < y_values.length; i++) {
+            var y_value = y_values[i];
             var $tr = $('<tr>');
-            $('<td>').text(y_values[i]).appendTo($tr);
+            $('<td>').text(y_value)
+                    .addClass(DEMO.class_name(y_prefix,y_value))
+                    .appendTo($tr);
             for (var j = 0; j < x_values.length; j++) {
-                $('<td>').appendTo($tr);
+                var x_value = x_values[j];
+                $('<td>').addClass(DEMO.class_name(x_prefix,x_value))
+                        .addClass(DEMO.class_name(y_prefix,y_value))
+                        .appendTo($tr);
             }
             $tr.appendTo($table);
         }
