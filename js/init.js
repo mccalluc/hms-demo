@@ -1,23 +1,26 @@
-// Global is fine for this, but safer to put it in function scope or namespace for something real.
-var mutations;
-function Mutations(list) {
-    this.type_counts = {};
-    this.chromo_counts = {};
-    for (var i = 0; i < list.length; i++) {
-        var type = list[i].type;
-        if (this.type_counts[type]) {
-            this.type_counts[type]++;
-        } else {
-            this.type_counts[type] = 1;
+var DEMO = {
+    class_name: function (prefix, messy) {
+        // Name collisions are still a posibility, but good enough for this data set.
+        return prefix + '_' + messy.replace(/</g, 'lt').replace(/>/g, 'gt').replace(/\W+/g, '-');
+    },
+    row_html: function (mutation) {
+        // Might be better to template the HTML, rather than building it like this.
+        var $tr = $('<tr>');
+        $('<td>').text(mutation.id).appendTo($tr);
+        $('<td>').text(mutation.mutation).appendTo($tr);
+        $('<td>').text(mutation.type).appendTo($tr);
+        $('<td>').text(mutation.chromosome).appendTo($tr);
+        $('<td>').text(mutation.start).appendTo($tr);
+        $('<td>').text(mutation.end).appendTo($tr);
+        $tr.addClass(DEMO.class_name('chromosome', mutation.chromosome))
+                .addClass(DEMO.class_name('type', mutation.type));
+        return $tr;
+    },
+    table_html: function (mutations) {
+        var $table = $('<table>');
+        for (var i = 0; i < mutations.length; i++) {
+            DEMO.row_html(mutations[i]).appendTo($table);
         }
-
-        var chromo = list[i].chromosome;
-        if (this.chromo_counts[chromo]) {
-            this.chromo_counts[chromo]++;
-        } else {
-            this.chromo_counts[chromo] = 1;
-        }
+        return $table;
     }
-}
-
-
+};
