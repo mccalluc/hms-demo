@@ -1,0 +1,6 @@
+language: ruby 
+sudo: false
+script:
+  - echo "TODO: Should phantomjs be able to use file: URIs?"
+  - ruby -run -e httpd . -p 5000 & # Choice of ruby is arbitrary.
+  - phantomjs js/run-qunit.js http://localhost:5000/tests.html
