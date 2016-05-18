@@ -7,8 +7,8 @@ var DEMO = {
     chromosome_set: {},
     row_html: function (mutation) {
         // Might be better to template the HTML, rather than building it like this?
-        DEMO.type_set[mutation.type] = 1;
-        DEMO.chromosome_set[mutation.chromosome] = 1;
+        DEMO.type_set[mutation.type] = true;
+        DEMO.chromosome_set[mutation.chromosome] = true;
         var $tr = $('<tr>')
                 .addClass(DEMO.class_name('chromosome', mutation.chromosome))
                 .addClass(DEMO.class_name('type', mutation.type));
@@ -27,11 +27,21 @@ var DEMO = {
         }
         return $table;
     },
-    controls_html: function (prefix, values) {
-        var $ul = $('<ul>');
-        for (var i = 0; i < values.length; i++) {
-            $('<li>').text(values[i]).appendTo($ul);
+    controls_html: function (x_prefix, x_values, y_prefix, y_values) {
+        var $table = $('<table>');
+        var $header = $('<tr>').append('<td>');
+        for (var i = 0; i < x_values.length; i++) {
+            $('<td>').text(x_values[i]).appendTo($header);
         }
-        return $ul;
+        $header.appendTo($table);
+        for (var i = 0; i < y_values.length; i++) {
+            var $tr = $('<tr>');
+            $('<td>').text(y_values[i]).appendTo($tr);
+            for (var j = 0; j < x_values.length; j++) {
+                $('<td>').appendTo($tr);
+            }
+            $tr.appendTo($table);
+        }
+        return $table;
     }
 };
