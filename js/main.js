@@ -8,4 +8,7 @@ $(function () {
                         'chromosome', Object.keys(DEMO.chromosome_set)));
             }
     );
+    $('#controls').on('click','.head',function(e){
+        $(this).toggleClass('on');
+    });
 });

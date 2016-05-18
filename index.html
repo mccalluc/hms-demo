@@ -4,11 +4,29 @@
         <title>Visualization Demo</title>
         <meta charset="UTF-8"/>
         <style>
+            body {
+                font-family: sans-serif;
+            }
             #controls {
                 float: left;
+                width: 22em;
+            }
+            #controls .head {
+                cursor: pointer;
+                font-weight: bold;
+            }
+            #controls .head {
+                border: 2px solid transparent;
+            }
+            #controls .head.on {
+                border-color: #666;
             }
             td {
-                border: solid 1px;
+                background: #EEE;
+                padding: 2px 4px;
+            }
+            #controls {
+                margin-right: 1em;
             }
         </style>
     </head>
