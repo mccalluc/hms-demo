@@ -4,10 +4,23 @@
         <title>Visualization Demo</title>
         <meta charset="UTF-8"/>
         <style>
+            #controls {
+                float: left;
+            }
+            td {
+                border: solid 1px;
+            }
         </style>
     </head>
     <body>
-        TODO
+        <div id="controls">
+            <div id="by-type">TYPE</div>
+            <div id="by-chromosome">CHROMOSOME</div>
+        </div>
+        <div>
+            <table id="data">
+            </table>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="js/init.js"></script>
         <script src="js/main.js"></script>
