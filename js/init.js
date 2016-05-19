@@ -49,7 +49,7 @@ var DEMO = {
     },
     controls_html: function (x_prefix, x_values, y_prefix, y_values) {
         var $table = $('<table>');
-        var $header = $('<tr>').append('<td>');
+        var $header = $('<tr>').append('<td id="all">');
         for (var i = 0; i < x_values.length; i++) {
             var value = x_values[i];
             $('<td>').text(value)
