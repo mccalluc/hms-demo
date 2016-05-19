@@ -13,7 +13,7 @@ proportional in length to the number which are currently selected.
 ## Interactions and filters
 
 Click on the row or column headers on the left to toggle. You can also click in the grid
-to select a type+chromosome intersections, or you can click in the upper left to reset.
+to select a type+chromosome intersection, or you can click in the upper left to reset.
 
 ## Optional
 
@@ -38,7 +38,7 @@ TODO
 
 ### D3
 
-I actually did the little bars last, and I had enough moment with plain jQuery that
+I actually did the little bars last, and I had enough momentum with plain jQuery that
 it seemed to make the most sense just to keep with it. 
 
 ### Wheel reinvention
@@ -48,5 +48,5 @@ on the server instead of the client. With solr facets, for instance, you could g
 counts for each facet, without needing to download every record.
 
 If we did want to do something like this on the client, we ought to have a better
-distinction be model and view. Since this is a one-shot, this will work, but for anything
+distinction be model and view. Since this is a one-shot, it will work, but for anything
 longer-lived you wouldn't want it coupled like this.
