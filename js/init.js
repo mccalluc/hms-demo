@@ -35,7 +35,7 @@ var DEMO = {
             $('<td>').text(value)
                     .addClass('head')
                     .addClass('on')
-                    .addClass(DEMO.class_name(x_prefix,value))
+                    .data('target','.'+DEMO.class_name(x_prefix,value))
                     .appendTo($header);
         }
         $header.appendTo($table);
@@ -45,7 +45,7 @@ var DEMO = {
             $('<td>').text(y_value)
                     .addClass('head')
                     .addClass('on')
-                    .addClass(DEMO.class_name(y_prefix,y_value))
+                    .data('target','.'+DEMO.class_name(y_prefix,y_value))
                     .appendTo($tr);
             for (var j = 0; j < x_values.length; j++) {
                 var x_value = x_values[j];

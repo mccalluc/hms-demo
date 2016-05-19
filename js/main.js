@@ -9,6 +9,8 @@ $(function () {
             }
     );
     $('#controls').on('click','.head',function(e){
-        $(this).toggleClass('on');
+        var $this = $(this);
+        $this.toggleClass('on');
+        $('#table').find($this.data('target')).toggle($this.hasClass('on'));
     });
 });
