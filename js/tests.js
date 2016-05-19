@@ -26,15 +26,14 @@ QUnit.test('table_html', function (assert) {
         "mutation": "A>G"
     }])[0].outerHTML,
             '<table><tbody>'
-            + '<tr class=\"chromosome_10 type_single-base-substitution\">'
-            + '<td>MU589117</td><td>A&gt;G</td><td>single base substitution</td>'
-            + '<td>10</td><td>38654432</td><td>38654432</td></tr>'
+            + '<tr><td class=\"head\">id</td><td class=\"head\">mutation</td><td class=\"head\">type</td><td class=\"head\">chromosome</td><td class=\"head\">start</td><td class=\"head\">end</td></tr><tr class=\"chromosome_10 type_single-base-substitution\"><td>MU589117</td><td>A&gt;G</td><td>single base substitution</td><td>10</td><td>38654432</td><td>38654432</td></tr>'
             + '</tbody></table>');
 });
 
 QUnit.test('controls_html', function (assert) {
+    DEMO.type_chromosome_matrix = {'a': {}, 'b': {}};
     assert.equal(DEMO.controls_html('x',['a','b'],'y',['1','2'])[0].outerHTML,
             '<table><tbody>'
-            + '<tr><td></td><td class=\"head on x_a\">a</td><td class=\"head on x_b\">b</td></tr><tr><td class=\"head on y_1\">1</td><td class=\"x_a y_1 on\"></td><td class=\"x_b y_1 on\"></td></tr><tr><td class=\"head on y_2\">2</td><td class=\"x_a y_2 on\"></td><td class=\"x_b y_2 on\"></td></tr>'
+            + '<tr><td id=\"all\"></td><td data-target=\"x_a\" class=\"head on\">a</td><td data-target=\"x_b\" class=\"head on\">b</td></tr><tr><td data-target=\"y_1\" class=\"head on\">1</td><td class=\"x_a y_1 on\"></td><td class=\"x_b y_1 on\"></td></tr><tr><td data-target=\"y_2\" class=\"head on\">2</td><td class=\"x_a y_2 on\"></td><td class=\"x_b y_2 on\"></td></tr>'
             + '</tbody></table>');
 });
