@@ -6,11 +6,13 @@ $(function () {
                 $('#controls').append(DEMO.controls_html(
                         'type', Object.keys(DEMO.type_set),
                         'chromosome', Object.keys(DEMO.chromosome_set)));
+          //      $('#controls td').not('.head')
+          //              .html('<svg viewBox="-1 -1 2 2" version="1.1" xmlns="http://www.w3.org/2000/svg"><circle cx="0" cy="0" r="1"></circle></svg>');
             }
     );
     $('#controls').on('click','.head',function(e){
         var $this = $(this);
         $this.toggleClass('on');
-        $('#table').find($this.data('target')).toggle($this.hasClass('on'));
+        DEMO.reset();
     });
 });

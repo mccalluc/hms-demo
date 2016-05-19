@@ -18,6 +18,7 @@
             #controls .head {
                 border: 2px solid transparent;
                 border-radius: 4px;
+                text-align: center;
             }
             #controls .head.on {
                 border-color: #666;
@@ -25,6 +26,17 @@
             td {
                 background: #EEE;
                 padding: 2px 4px;
+                position: relative; /* base for absolute SVG */
+            }
+            td svg {
+                position: absolute;
+                height: 4em;
+                top: -2em;
+                left: 0;
+                right: 0;
+            }
+            td svg circle {
+                
             }
             #controls {
                 margin-right: 1em;

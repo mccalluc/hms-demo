@@ -1,10 +1,11 @@
 var DEMO = {
+    type_set: {},
+    chromosome_set: {},
+    
     class_name: function (prefix, messy) {
         // Name collisions are still a posibility, but good enough for this data set.
         return prefix + '_' + messy.replace(/</g, 'lt').replace(/>/g, 'gt').replace(/\W+/g, '-');
     },
-    type_set: {},
-    chromosome_set: {},
     row_html: function (mutation) {
         // Might be better to template the HTML, rather than building it like this?
         DEMO.type_set[mutation.type] = true;
@@ -57,5 +58,11 @@ var DEMO = {
             $tr.appendTo($table);
         }
         return $table;
+    },
+    reset: function() {
+        $('#table tr').show();
+        $('#controls .head').not('.on').each(function(i,el) {
+            $('#table tr'+$(el).data('target')).hide();
+        });
     }
 };
