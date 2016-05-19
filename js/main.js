@@ -15,4 +15,12 @@ $(function () {
         $this.toggleClass('on');
         DEMO.reset();
     });
+    $('#controls').on('click','td:not(.head)',function(e){
+        $('#controls .head').removeClass('on');
+        var classes = $(this).attr('class').split(' ');
+        for (var i = 0; i < classes.length; i++) {
+            $('#controls .head[data-target='+classes[i]+']').addClass('on');
+        }
+        DEMO.reset();
+    });
 });

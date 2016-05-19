@@ -55,7 +55,7 @@ var DEMO = {
             $('<td>').text(value)
                     .addClass('head')
                     .addClass('on')
-                    .data('target','.'+DEMO.class_name(x_prefix,value))
+                    .attr('data-target', DEMO.class_name(x_prefix,value)) // .data is not selectable
                     .appendTo($header);
         }
         $header.appendTo($table);
@@ -65,7 +65,7 @@ var DEMO = {
             $('<td>').text(y_value)
                     .addClass('head')
                     .addClass('on')
-                    .data('target','.'+DEMO.class_name(y_prefix,y_value))
+                    .attr('data-target', DEMO.class_name(y_prefix,y_value)) // .data is not selectable
                     .appendTo($tr);
             for (var j = 0; j < x_values.length; j++) {
                 var x_value = x_values[j];
@@ -82,7 +82,7 @@ var DEMO = {
     reset: function() {
         $('#table tr').show();
         $('#controls .head').not('.on').each(function(i,el) {
-            $('#table tr'+$(el).data('target')).hide();
+            $('#table tr.'+$(el).data('target')).hide();
         });
     }
 };
