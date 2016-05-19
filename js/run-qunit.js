@@ -71,7 +71,8 @@ page.open(system.args[1], function(status){
         }, function(){
             var failedNum = page.evaluate(function(){
                 var el = document.getElementById('qunit-testresult');
-                console.log(el.innerText);
+                // Local tweak: more info for debugging.
+                console.log(document.getElementById('qunit').textContent);
                 try {
                     return el.getElementsByClassName('failed')[0].innerHTML;
                 } catch (e) { }
