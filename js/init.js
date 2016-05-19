@@ -81,8 +81,11 @@ var DEMO = {
     },
     reset: function() {
         $('#table tr').show();
+        $('#controls td:not(.head)').addClass('on');
+        
         $('#controls .head').not('.on').each(function(i,el) {
             $('#table tr.'+$(el).data('target')).hide();
+            $('#controls td:not(.head).'+$(el).data('target')).removeClass('on');
         });
     }
 };

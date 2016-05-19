@@ -43,6 +43,7 @@
             #controls {
                 margin-right: 1em;
             }
+            /* TODO: better color combo for the color blind? */ 
             .type_single-base-substitution, .type_single-base-substitution * {
                 background: #EEF;
             }
@@ -51,6 +52,15 @@
             }
             .type_insertion-of-lt-200bp, .type_insertion-of-lt-200bp * {
                 background: #EFE;
+            }
+            .type_single-base-substitution:not(.on) {
+                background: #DDE;
+            }
+            .type_deletion-of-lt-200bp:not(.on) {
+                background: #EDD;
+            }
+            .type_insertion-of-lt-200bp:not(.on) {
+                background: #DED;
             }
         </style>
     </head>
