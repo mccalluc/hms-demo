@@ -3,6 +3,12 @@ var DEMO = {
     chromosome_set: {},
     type_chromosome_matrix: {},
     
+    add: function (a,b) {
+        return a + b;
+    },
+    sum: function (array) {
+       return array.reduce(DEMO.add, 0);
+    },
     class_name: function (prefix, messy) {
         // Name collisions are still a posibility, but good enough for this data set.
         return prefix + '_' + messy.replace(/</g, 'lt').replace(/>/g, 'gt').replace(/\W+/g, '-');
