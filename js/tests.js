@@ -37,7 +37,3 @@ QUnit.test('controls_html', function (assert) {
             + '<tr><td id=\"all\"></td><td data-target=\"x_a\" class=\"head on\">a</td><td data-target=\"x_b\" class=\"head on\">b</td></tr><tr><td data-target=\"y_1\" class=\"head on\">1</td><td class=\"x_a y_1 on\"></td><td class=\"x_b y_1 on\"></td></tr><tr><td data-target=\"y_2\" class=\"head on\">2</td><td class=\"x_a y_2 on\"></td><td class=\"x_b y_2 on\"></td></tr>'
             + '</tbody></table>');
 });
-
-QUnit.test('sum', function (assert) {
-    assert.equal(DEMO.sum([1,2,3,4]),10);
-});
