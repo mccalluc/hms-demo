@@ -13,6 +13,7 @@ var DEMO = {
         var $tr = $('<tr>')
                 .addClass(DEMO.class_name('chromosome', mutation.chromosome))
                 .addClass(DEMO.class_name('type', mutation.type));
+        // TODO: loop over list
         $('<td>').text(mutation.id).appendTo($tr);
         $('<td>').text(mutation.mutation).appendTo($tr);
         $('<td>').text(mutation.type).appendTo($tr);
@@ -23,6 +24,15 @@ var DEMO = {
     },
     table_html: function (mutations) {
         var $table = $('<table>');
+        var $header = $('<tr>');
+        // TODO: loop over list
+        $('<td>').text('id').appendTo($header).addClass('head');
+        $('<td>').text('mutation').appendTo($header).addClass('head');
+        $('<td>').text('type').appendTo($header).addClass('head');
+        $('<td>').text('chromosome').appendTo($header).addClass('head');
+        $('<td>').text('start').appendTo($header).addClass('head');
+        $('<td>').text('end').appendTo($header).addClass('head');
+        $header.appendTo($table);
         for (var i = 0; i < mutations.length; i++) {
             DEMO.row_html(mutations[i]).appendTo($table);
         }
