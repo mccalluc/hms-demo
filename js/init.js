@@ -1,15 +1,24 @@
 var DEMO = {
     type_set: {},
     chromosome_set: {},
+    type_chromosome_matrix: {},
     
     class_name: function (prefix, messy) {
         // Name collisions are still a posibility, but good enough for this data set.
         return prefix + '_' + messy.replace(/</g, 'lt').replace(/>/g, 'gt').replace(/\W+/g, '-');
     },
     row_html: function (mutation) {
-        // Might be better to template the HTML, rather than building it like this?
         DEMO.type_set[mutation.type] = true;
         DEMO.chromosome_set[mutation.chromosome] = true;
+        if (!DEMO.type_chromosome_matrix[mutation.type]) {
+            DEMO.type_chromosome_matrix[mutation.type] = {};
+        }
+        if (!DEMO.type_chromosome_matrix[mutation.type][mutation.chromosome]) {
+            DEMO.type_chromosome_matrix[mutation.type][mutation.chromosome] = 0;
+        }
+        DEMO.type_chromosome_matrix[mutation.type][mutation.chromosome]++;
+        
+        // Might be better to template the HTML, rather than building it like this?
         var $tr = $('<tr>')
                 .addClass(DEMO.class_name('chromosome', mutation.chromosome))
                 .addClass(DEMO.class_name('type', mutation.type));
@@ -63,6 +72,7 @@ var DEMO = {
                 $('<td>').addClass(DEMO.class_name(x_prefix,x_value))
                         .addClass(DEMO.class_name(y_prefix,y_value))
                         .addClass('on')
+                        .text(DEMO.type_chromosome_matrix[x_value][y_value])
                         .appendTo($tr);
             }
             $tr.appendTo($table);
