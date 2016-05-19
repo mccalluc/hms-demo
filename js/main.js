@@ -7,6 +7,12 @@ $(function () {
                         'type', Object.keys(DEMO.type_set),
                         'chromosome', Object.keys(DEMO.chromosome_set)));
                 $('#controls .head').append('<div class="bar">');
+                // TODO: This is unreadable!
+                DEMO.max_count = {
+                        type: Math.max.apply(null, $.map(Object.keys(DEMO.type_set),function(name,i){return $('#table .'+DEMO.class_name('type',name)).length})),
+                        chromosome: Math.max.apply(null, $.map(Object.keys(DEMO.chromosome_set),function(name,i){return $('#table .'+DEMO.class_name('chromosome',name)).length}))
+                    };
+                DEMO.reset();
             }
     );
     $('#controls').on('click','.head',function(e){

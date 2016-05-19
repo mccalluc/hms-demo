@@ -2,13 +2,23 @@ var DEMO = {
     type_set: {},
     chromosome_set: {},
     type_chromosome_matrix: {},
+    count: function (class_name) {
+        return $('#table .'+class_name+':visible').length;
+    },
     
-    add: function (a,b) {
-        return a + b;
-    },
-    sum: function (array) {
-       return array.reduce(DEMO.add, 0);
-    },
+    // Or we could base it on the numbers in #control, though that gets more complicated:
+    //    add: function (a, b) {
+    //        return a + b;
+    //    },
+    //    sum: function (array) {
+    //        return array.reduce(DEMO.add, 0);
+    //    },
+    //    count: function (class_name) {
+    //        return DEMO.sum($('#controls td.on.' + class_name)
+    //                .map(function (i, el) {
+    //                    return parseInt(el.innerHTML) || 0;
+    //                }).get());
+    //    },
     class_name: function (prefix, messy) {
         // Name collisions are still a posibility, but good enough for this data set.
         return prefix + '_' + messy.replace(/</g, 'lt').replace(/>/g, 'gt').replace(/\W+/g, '-');
@@ -23,7 +33,7 @@ var DEMO = {
             DEMO.type_chromosome_matrix[mutation.type][mutation.chromosome] = 0;
         }
         DEMO.type_chromosome_matrix[mutation.type][mutation.chromosome]++;
-        
+
         // Might be better to template the HTML, rather than building it like this?
         var $tr = $('<tr>')
                 .addClass(DEMO.class_name('chromosome', mutation.chromosome))
@@ -61,7 +71,7 @@ var DEMO = {
             $('<td>').text(value)
                     .addClass('head')
                     .addClass('on')
-                    .attr('data-target', DEMO.class_name(x_prefix,value)) // .data is not selectable
+                    .attr('data-target', DEMO.class_name(x_prefix, value)) // .data is not selectable
                     .appendTo($header);
         }
         $header.appendTo($table);
@@ -71,12 +81,12 @@ var DEMO = {
             $('<td>').text(y_value)
                     .addClass('head')
                     .addClass('on')
-                    .attr('data-target', DEMO.class_name(y_prefix,y_value)) // .data is not selectable
+                    .attr('data-target', DEMO.class_name(y_prefix, y_value)) // .data is not selectable
                     .appendTo($tr);
             for (var j = 0; j < x_values.length; j++) {
                 var x_value = x_values[j];
-                $('<td>').addClass(DEMO.class_name(x_prefix,x_value))
-                        .addClass(DEMO.class_name(y_prefix,y_value))
+                $('<td>').addClass(DEMO.class_name(x_prefix, x_value))
+                        .addClass(DEMO.class_name(y_prefix, y_value))
                         .addClass('on')
                         .text(DEMO.type_chromosome_matrix[x_value][y_value])
                         .appendTo($tr);
@@ -85,13 +95,22 @@ var DEMO = {
         }
         return $table;
     },
-    reset: function() {
+    reset: function () {
+        // Update UI to reflect current selections.
         $('#table tr').show();
         $('#controls td:not(.head)').addClass('on');
+
+        $('#controls .head').not('.on').each(function (i, el) {
+            $('#table tr.' + $(el).data('target')).hide();
+            $('#controls td:not(.head).' + $(el).data('target')).removeClass('on');
+        });
         
-        $('#controls .head').not('.on').each(function(i,el) {
-            $('#table tr.'+$(el).data('target')).hide();
-            $('#controls td:not(.head).'+$(el).data('target')).removeClass('on');
+        $('#controls .head').each(function(i,el){
+            var $el = $(el);
+            var target = $el.data('target');
+            var axis = target.split('_')[0];
+            var width = 100 * DEMO.count(target) / DEMO.max_count[axis] + '%';
+            $el.find('.bar').width(width);
         });
     }
 };
